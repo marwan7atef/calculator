@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class ButtonItem extends StatelessWidget {
+  String numbersAndOperator;
 String buttonContent;
 Color colorOfButton;
 int flexAmount;
 bool isEqualButton;
-ButtonItem({required this.buttonContent,required this.colorOfButton,this.flexAmount=1,this.isEqualButton=false});
+void Function(String) onPressed;
+ButtonItem({required this.buttonContent,required this.colorOfButton,required this.onPressed,this.flexAmount=1,this.isEqualButton=false, this.numbersAndOperator="_"});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,9 @@ ButtonItem({required this.buttonContent,required this.colorOfButton,this.flexAmo
 
         ),
 
-        onPressed:(){},
+        onPressed:(){
+          onPressed(numbersAndOperator);
+        },
         child: SvgPicture.asset("assets/icons/${buttonContent}.svg",),
            ),
       ),
